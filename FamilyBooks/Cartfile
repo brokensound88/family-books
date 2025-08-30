@@ -1,0 +1,163 @@
+# Cartfile for FamilyBooks iOS App
+# Carthage dependency management for binary frameworks
+
+# MARK: - Core Dependencies
+
+# Networking and HTTP
+github "Alamofire/Alamofire" ~> 5.8.1
+github "Alamofire/AlamofireImage" ~> 4.3.0
+
+# Image Loading and Caching
+github "kean/Nuke" ~> 12.4.0
+
+# Security and Cryptography
+github "evgenyneu/keychain-swift" ~> 20.0.0
+github "krzyzanowskim/CryptoSwift" ~> 1.8.0
+
+# UI and Animation
+github "airbnb/lottie-ios" ~> 4.4.0
+github "siteline/SwiftUIIntrospect" ~> 1.1.0
+
+# Charts and Data Visualization
+github "danielgindi/Charts" ~> 5.0.0
+
+# Reactive Programming
+github "ReactiveX/RxSwift" ~> 6.6.0
+
+# Utilities and Helpers
+github "malcommac/SwiftDate" ~> 7.0.0
+github "marmelroy/PhoneNumberKit" ~> 3.7.0
+
+# Architecture and State Management
+github "pointfreeco/swift-composable-architecture" ~> 1.5.0
+github "pointfreeco/swift-dependencies" ~> 1.1.0
+github "pointfreeco/swift-identified-collections" ~> 1.0.0
+
+# Navigation and Routing
+github "pointfreeco/swiftui-navigation" ~> 1.2.0
+
+# Testing Utilities
+github "pointfreeco/combine-schedulers" ~> 1.0.0
+
+# MARK: - Development and Debugging Dependencies
+
+# Logging
+github "CocoaLumberjack/CocoaLumberjack" ~> 3.8.0
+
+# Code Quality and Formatting
+github "realm/SwiftLint" ~> 0.54.0
+github "nicklockwood/SwiftFormat" ~> 0.52.0
+
+# MARK: - Financial and Banking Dependencies
+
+# Stock Market Data (if available via Carthage)
+# Note: Some financial SDKs may only be available via CocoaPods or SPM
+
+# MARK: - UI Enhancement Dependencies
+
+# Skeleton Loading
+github "Juanpe/SkeletonView" ~> 1.30.4
+
+# Flow Layout for SwiftUI
+github "globulus/swiftui-flow-layout" ~> 1.0.0
+
+# Shimmer Effects
+github "markiv/SwiftUI-Shimmer" ~> 1.4.0
+
+# MARK: - Platform-Specific Dependencies
+
+# iOS-specific frameworks
+github "apple/swift-collections" ~> 1.0.0
+github "apple/swift-algorithms" ~> 1.2.0
+github "apple/swift-numerics" ~> 1.0.0
+
+# MARK: - Testing Dependencies (for development builds)
+
+# Unit Testing
+github "Quick/Quick" ~> 7.3.0
+github "Quick/Nimble" ~> 13.0.0
+
+# Snapshot Testing
+github "pointfreeco/swift-snapshot-testing" ~> 1.15.0
+
+# HTTP Stubbing for Testing
+github "AliSoftware/OHHTTPStubs" ~> 9.1.0
+
+# MARK: - Performance and Analytics
+
+# Performance Monitoring (if available)
+# Note: Firebase and other analytics SDKs typically use CocoaPods or SPM
+
+# MARK: - Accessibility and Localization
+
+# Accessibility Helpers
+github "rwbutler/Accessibility" ~> 1.0.0
+
+# MARK: - Configuration Notes
+
+# To install these dependencies, run:
+# carthage update --platform iOS --use-xcframeworks
+
+# For development builds with testing dependencies:
+# carthage update --platform iOS --use-xcframeworks --configuration Debug
+
+# For release builds (production):
+# carthage update --platform iOS --use-xcframeworks --configuration Release
+
+# MARK: - Binary Dependencies
+
+# Some dependencies that are better as binaries
+binary "https://github.com/firebase/firebase-ios-sdk/releases/download/10.18.0/Firebase.zip"
+binary "https://github.com/plaid/plaid-link-ios/releases/download/5.4.0/LinkKit.zip"
+
+# MARK: - Custom Frameworks
+
+# If you have custom frameworks hosted on GitHub
+# github "YourOrganization/YourCustomFramework" ~> 1.0.0
+
+# MARK: - Development Notes
+
+# 1. Always use semantic versioning with ~> operator for stability
+# 2. Pin to specific versions for critical dependencies in production
+# 3. Use --use-xcframeworks flag for Xcode 12+ compatibility
+# 4. Consider using --cache-builds for faster subsequent builds
+# 5. Use --platform iOS to build only for iOS (saves time)
+# 6. For CI/CD, use --no-use-binaries to ensure fresh builds
+
+# MARK: - Troubleshooting
+
+# If you encounter build issues:
+# 1. Clean Carthage cache: rm -rf ~/Library/Caches/org.carthage.CarthageKit
+# 2. Clean derived data: rm -rf ~/Library/Developer/Xcode/DerivedData
+# 3. Update Carthage: brew update && brew upgrade carthage
+# 4. Use --no-use-binaries flag if pre-built binaries cause issues
+
+# MARK: - Version Compatibility
+
+# This Cartfile is compatible with:
+# - iOS 17.0+
+# - Xcode 15.0+
+# - Swift 5.9+
+# - Carthage 0.39.0+
+
+# MARK: - Build Optimization
+
+# For faster builds, consider:
+# 1. Using --cache-builds flag
+# 2. Building only changed dependencies with --new-resolver
+# 3. Using parallel builds with --derived-data-path
+
+# MARK: - Security Considerations
+
+# 1. Always verify checksums for binary dependencies
+# 2. Use HTTPS URLs for all GitHub repositories
+# 3. Pin to specific versions for security-critical dependencies
+# 4. Regularly update dependencies to get security patches
+
+# MARK: - CI/CD Integration
+
+# For continuous integration:
+# carthage bootstrap --platform iOS --use-xcframeworks --cache-builds
+
+# For release builds:
+# carthage update --platform iOS --use-xcframeworks --no-use-binaries --configuration Release

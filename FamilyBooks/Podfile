@@ -1,0 +1,289 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '17.0'
+
+# Inhibit all warnings from CocoaPods libraries
+inhibit_all_warnings!
+
+# Use frameworks instead of static libraries
+use_frameworks!
+
+# Use modular headers
+use_modular_headers!
+
+# Enable incremental installation
+install! 'cocoapods', :incremental_installation => true
+
+# MARK: - Main App Target
+target 'FamilyBooks' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  
+  # MARK: - Core Dependencies
+  
+  # Firebase SDK for backend services
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/RemoteConfig'
+  pod 'Firebase/Performance'
+  pod 'Firebase/DynamicLinks'
+  pod 'Firebase/Functions'
+  
+  # Plaid SDK for bank account integration
+  pod 'Plaid', '~> 5.4.0'
+  
+  # Networking
+  pod 'Alamofire', '~> 5.8.1'
+  pod 'AlamofireImage', '~> 4.3.0'
+  
+  # Security and Keychain
+  pod 'KeychainSwift', '~> 20.0.0'
+  pod 'CryptoSwift', '~> 1.8.0'
+  
+  # UI and Animation
+  pod 'lottie-ios', '~> 4.4.0'
+  pod 'SkeletonView', '~> 1.30.4'
+  pod 'SwiftUIIntrospect', '~> 1.1.0'
+  
+  # Image Loading and Caching
+  pod 'Nuke', '~> 12.4.0'
+  pod 'NukeUI', '~> 0.8.0'
+  
+  # Charts and Data Visualization
+  pod 'Charts', '~> 5.0.0'
+  pod 'DGCharts', '~> 5.0.0'
+  
+  # Utilities
+  pod 'SwiftDate', '~> 7.0.0'
+  pod 'PhoneNumberKit', '~> 3.7.0'
+  pod 'CountryPickerView', '~> 3.3.0'
+  
+  # Architecture and State Management
+  pod 'RxSwift', '~> 6.6.0'
+  pod 'RxCocoa', '~> 6.6.0'
+  pod 'RxRelay', '~> 6.6.0'
+  
+  # Logging and Debugging
+  pod 'CocoaLumberjack/Swift', '~> 3.8.0'
+  pod 'FLEX', '~> 5.22.10', :configurations => ['Debug']
+  
+  # MARK: - Financial Services
+  
+  # Stock Market Data
+  pod 'YahooFinanceKit', '~> 1.0.0'
+  
+  # Currency and Localization
+  pod 'CurrencyFormatter', '~> 1.0.0'
+  
+  # MARK: - Testing Dependencies (Test targets only)
+  
+  target 'FamilyBooksTests' do
+    inherit! :search_paths
+    # Pods for testing
+    pod 'Quick', '~> 7.3.0'
+    pod 'Nimble', '~> 13.0.0'
+    pod 'RxTest', '~> 6.6.0'
+    pod 'RxBlocking', '~> 6.6.0'
+    pod 'OHHTTPStubs/Swift', '~> 9.1.0'
+    pod 'SnapshotTesting', '~> 1.15.0'
+  end
+
+  target 'FamilyBooksUITests' do
+    inherit! :search_paths
+    # Pods for UI testing
+    pod 'Quick', '~> 7.3.0'
+    pod 'Nimble', '~> 13.0.0'
+  end
+end
+
+# MARK: - Widget Extension Target
+target 'FamilyBooksWidgets' do
+  use_frameworks!
+  
+  # Core dependencies for widgets
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'KeychainSwift', '~> 20.0.0'
+  pod 'CryptoSwift', '~> 1.8.0'
+  pod 'Charts', '~> 5.0.0'
+end
+
+# MARK: - Watch App Target (Future)
+target 'FamilyBooksWatch' do
+  platform :watchos, '10.0'
+  use_frameworks!
+  
+  # Watch-specific dependencies
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'KeychainSwift', '~> 20.0.0'
+end
+
+# MARK: - Mac Catalyst Target (Future)
+target 'FamilyBooksMac' do
+  platform :osx, '14.0'
+  use_frameworks!
+  
+  # Mac-specific dependencies
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
+  pod 'Alamofire', '~> 5.8.1'
+  pod 'KeychainSwift', '~> 20.0.0'
+  pod 'CryptoSwift', '~> 1.8.0'
+  pod 'Charts', '~> 5.0.0'
+end
+
+# MARK: - Post Install Configuration
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      # Set minimum deployment targets
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'
+      config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '14.0'
+      config.build_settings['WATCHOS_DEPLOYMENT_TARGET'] = '10.0'
+      config.build_settings['TVOS_DEPLOYMENT_TARGET'] = '17.0'
+      
+      # Enable bitcode for release builds
+      config.build_settings['ENABLE_BITCODE'] = 'YES'
+      
+      # Set Swift version
+      config.build_settings['SWIFT_VERSION'] = '5.9'
+      
+      # Optimize for size in release builds
+      if config.name == 'Release'
+        config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Osize'
+        config.build_settings['GCC_OPTIMIZATION_LEVEL'] = 's'
+      end
+      
+      # Enable whole module optimization
+      config.build_settings['SWIFT_COMPILATION_MODE'] = 'wholemodule'
+      
+      # Set code signing settings
+      config.build_settings['CODE_SIGN_IDENTITY'] = 'iPhone Developer'
+      config.build_settings['DEVELOPMENT_TEAM'] = 'YOUR_TEAM_ID' # Replace with actual team ID
+      
+      # Enable strict concurrency checking
+      config.build_settings['SWIFT_STRICT_CONCURRENCY'] = 'complete'
+      
+      # Enable upcoming Swift features
+      config.build_settings['OTHER_SWIFT_FLAGS'] = [
+        '-enable-upcoming-feature', 'BareSlashRegexLiterals',
+        '-enable-upcoming-feature', 'ConciseMagicFile',
+        '-enable-upcoming-feature', 'ForwardTrailingClosures',
+        '-enable-upcoming-feature', 'ImportObjcForwardDeclarations',
+        '-enable-upcoming-feature', 'DisableOutwardActorInference',
+        '-enable-experimental-feature', 'StrictConcurrency'
+      ].join(' ')
+      
+      # Disable warnings for pods
+      config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
+      config.build_settings['SWIFT_SUPPRESS_WARNINGS'] = 'YES'
+      
+      # Set architecture settings
+      if config.name == 'Debug'
+        config.build_settings['ONLY_ACTIVE_ARCH'] = 'YES'
+      else
+        config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+      end
+      
+      # Enable module stability
+      config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+      
+      # Set minimum iOS version for all pods
+      if target.platform_name == :ios
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'
+      elsif target.platform_name == :osx
+        config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '14.0'
+      elsif target.platform_name == :watchos
+        config.build_settings['WATCHOS_DEPLOYMENT_TARGET'] = '10.0'
+      elsif target.platform_name == :tvos
+        config.build_settings['TVOS_DEPLOYMENT_TARGET'] = '17.0'
+      end
+    end
+  end
+  
+  # Fix for Xcode 15 compatibility
+  installer.pods_project.targets.each do |target|
+    if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+      target.build_configurations.each do |config|
+        config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+      end
+    end
+  end
+  
+  # Enable incremental builds
+  installer.pods_project.build_configurations.each do |config|
+    config.build_settings['CLANG_ENABLE_INCREMENTAL_PROCESSING'] = 'YES'
+  end
+end
+
+# MARK: - Plugin Configuration
+
+# SwiftLint plugin configuration
+plugin 'cocoapods-swiftlint'
+
+# SwiftGen plugin configuration
+plugin 'cocoapods-swiftgen'
+
+# Acknowledgements plugin
+plugin 'cocoapods-acknowledgements'
+
+# MARK: - Source Configuration
+
+# Use CDN source for faster dependency resolution
+source 'https://cdn.cocoapods.org/'
+
+# Fallback to GitHub source
+source 'https://github.com/CocoaPods/Specs.git'
+
+# MARK: - Workspace Configuration
+
+# Generate workspace with specific name
+workspace 'FamilyBooks.xcworkspace'
+
+# MARK: - Build Settings Override
+
+# Override build settings for specific configurations
+if defined?(installer)
+  installer.pods_project.build_configurations.each do |config|
+    # Enable debugging symbols in all configurations
+    config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
+    
+    # Set deployment targets
+    config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'
+    config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '14.0'
+    config.build_settings['WATCHOS_DEPLOYMENT_TARGET'] = '10.0'
+    config.build_settings['TVOS_DEPLOYMENT_TARGET'] = '17.0'
+    
+    # Enable module verifier
+    config.build_settings['ENABLE_MODULE_VERIFIER'] = 'YES'
+    
+    # Set Swift language version
+    config.build_settings['SWIFT_VERSION'] = '5.9'
+  end
+end
+
+# MARK: - Custom Hooks
+
+# Pre-install hook
+pre_install do |installer|
+  puts "🚀 Starting CocoaPods installation for FamilyBooks"
+  puts "📦 Installing #{installer.pod_targets.count} pods"
+end
+
+# Pre-integrate hook
+pre_integrate do |installer|
+  puts "🔧 Configuring workspace integration"
+end
+
+# Post-integrate hook
+post_integrate do |installer|
+  puts "✅ CocoaPods installation completed successfully"
+  puts "📱 Ready to build FamilyBooks!"
+end

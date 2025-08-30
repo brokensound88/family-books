@@ -1,0 +1,527 @@
+{
+  "version": "1.0.0",
+  "description": "Dependency version tracking for FamilyBooks iOS App",
+  "lastUpdated": "2025-01-28T00:00:00Z",
+  "platform": {
+    "ios": "17.0",
+    "swift": "5.9",
+    "xcode": "15.0"
+  },
+  "dependencies": {
+    "swiftPackageManager": {
+      "firebase": {
+        "version": "10.18.0",
+        "url": "https://github.com/firebase/firebase-ios-sdk",
+        "products": [
+          "FirebaseAnalytics",
+          "FirebaseAuth",
+          "FirebaseFirestore",
+          "FirebaseStorage",
+          "FirebaseCrashlytics",
+          "FirebaseMessaging",
+          "FirebaseRemoteConfig",
+          "FirebasePerformance",
+          "FirebaseDynamicLinks",
+          "FirebaseFunctions"
+        ],
+        "checksum": "sha256:abc123def456...",
+        "critical": true
+      },
+      "plaid": {
+        "version": "5.4.0",
+        "url": "https://github.com/plaid/plaid-link-ios",
+        "products": ["LinkKit"],
+        "checksum": "sha256:def456ghi789...",
+        "critical": true
+      },
+      "alamofire": {
+        "version": "5.8.1",
+        "url": "https://github.com/Alamofire/Alamofire",
+        "products": ["Alamofire"],
+        "checksum": "sha256:ghi789jkl012...",
+        "critical": false
+      },
+      "swiftuiCharts": {
+        "version": "2.10.0",
+        "url": "https://github.com/AppPear/ChartView",
+        "products": ["SwiftUICharts"],
+        "checksum": "sha256:jkl012mno345...",
+        "critical": false
+      },
+      "keychainSwift": {
+        "version": "20.0.0",
+        "url": "https://github.com/evgenyneu/keychain-swift",
+        "products": ["KeychainSwift"],
+        "checksum": "sha256:mno345pqr678...",
+        "critical": true
+      },
+      "swiftlint": {
+        "version": "0.54.0",
+        "url": "https://github.com/realm/SwiftLint",
+        "products": ["SwiftLintPlugin"],
+        "checksum": "sha256:pqr678stu901...",
+        "critical": false
+      },
+      "cryptoSwift": {
+        "version": "1.8.0",
+        "url": "https://github.com/krzyzanowskim/CryptoSwift",
+        "products": ["CryptoSwift"],
+        "checksum": "sha256:stu901vwx234...",
+        "critical": true
+      },
+      "lottie": {
+        "version": "4.4.0",
+        "url": "https://github.com/airbnb/lottie-ios",
+        "products": ["Lottie"],
+        "checksum": "sha256:vwx234yz567...",
+        "critical": false
+      },
+      "swiftuiIntrospect": {
+        "version": "1.1.0",
+        "url": "https://github.com/siteline/SwiftUIIntrospect",
+        "products": ["SwiftUIIntrospect"],
+        "checksum": "sha256:yz567abc890...",
+        "critical": false
+      },
+      "nuke": {
+        "version": "12.4.0",
+        "url": "https://github.com/kean/Nuke",
+        "products": ["Nuke", "NukeUI"],
+        "checksum": "sha256:abc890def123...",
+        "critical": false
+      },
+      "swiftFormat": {
+        "version": "0.52.0",
+        "url": "https://github.com/nicklockwood/SwiftFormat",
+        "products": ["SwiftFormatPlugin"],
+        "checksum": "sha256:def123ghi456...",
+        "critical": false
+      },
+      "quick": {
+        "version": "7.3.0",
+        "url": "https://github.com/Quick/Quick",
+        "products": ["Quick"],
+        "checksum": "sha256:ghi456jkl789...",
+        "critical": false
+      },
+      "nimble": {
+        "version": "13.0.0",
+        "url": "https://github.com/Quick/Nimble",
+        "products": ["Nimble"],
+        "checksum": "sha256:jkl789mno012...",
+        "critical": false
+      },
+      "swiftgen": {
+        "version": "6.6.2",
+        "url": "https://github.com/SwiftGen/SwiftGen",
+        "products": ["SwiftGenPlugin"],
+        "checksum": "sha256:mno012pqr345...",
+        "critical": false
+      },
+      "combineSchedulers": {
+        "version": "1.0.0",
+        "url": "https://github.com/pointfreeco/combine-schedulers",
+        "products": ["CombineSchedulers"],
+        "checksum": "sha256:pqr345stu678...",
+        "critical": false
+      },
+      "composableArchitecture": {
+        "version": "1.5.0",
+        "url": "https://github.com/pointfreeco/swift-composable-architecture",
+        "products": ["ComposableArchitecture"],
+        "checksum": "sha256:stu678vwx901...",
+        "critical": true
+      },
+      "swiftuiNavigation": {
+        "version": "1.2.0",
+        "url": "https://github.com/pointfreeco/swiftui-navigation",
+        "products": ["SwiftUINavigation"],
+        "checksum": "sha256:vwx901yz234...",
+        "critical": false
+      },
+      "swiftDependencies": {
+        "version": "1.1.0",
+        "url": "https://github.com/pointfreeco/swift-dependencies",
+        "products": ["Dependencies"],
+        "checksum": "sha256:yz234abc567...",
+        "critical": true
+      },
+      "identifiedCollections": {
+        "version": "1.0.0",
+        "url": "https://github.com/pointfreeco/swift-identified-collections",
+        "products": ["IdentifiedCollections"],
+        "checksum": "sha256:abc567def890...",
+        "critical": false
+      },
+      "swiftuiFlowLayout": {
+        "version": "1.0.0",
+        "url": "https://github.com/globulus/swiftui-flow-layout",
+        "products": ["SwiftUIFlowLayout"],
+        "checksum": "sha256:def890ghi123...",
+        "critical": false
+      },
+      "swiftuiShimmer": {
+        "version": "1.4.0",
+        "url": "https://github.com/markiv/SwiftUI-Shimmer",
+        "products": ["Shimmer"],
+        "checksum": "sha256:ghi123jkl456...",
+        "critical": false
+      }
+    },
+    "cocoapods": {
+      "firebase": {
+        "version": "10.18.0",
+        "pods": [
+          "Firebase/Analytics",
+          "Firebase/Auth",
+          "Firebase/Firestore",
+          "Firebase/Storage",
+          "Firebase/Crashlytics",
+          "Firebase/Messaging",
+          "Firebase/RemoteConfig",
+          "Firebase/Performance",
+          "Firebase/DynamicLinks",
+          "Firebase/Functions"
+        ],
+        "critical": true
+      },
+      "plaid": {
+        "version": "5.4.0",
+        "pods": ["Plaid"],
+        "critical": true
+      },
+      "alamofire": {
+        "version": "5.8.1",
+        "pods": ["Alamofire", "AlamofireImage"],
+        "critical": false
+      },
+      "keychainSwift": {
+        "version": "20.0.0",
+        "pods": ["KeychainSwift"],
+        "critical": true
+      },
+      "cryptoSwift": {
+        "version": "1.8.0",
+        "pods": ["CryptoSwift"],
+        "critical": true
+      },
+      "lottie": {
+        "version": "4.4.0",
+        "pods": ["lottie-ios"],
+        "critical": false
+      },
+      "skeletonView": {
+        "version": "1.30.4",
+        "pods": ["SkeletonView"],
+        "critical": false
+      },
+      "swiftuiIntrospect": {
+        "version": "1.1.0",
+        "pods": ["SwiftUIIntrospect"],
+        "critical": false
+      },
+      "nuke": {
+        "version": "12.4.0",
+        "pods": ["Nuke", "NukeUI"],
+        "critical": false
+      },
+      "charts": {
+        "version": "5.0.0",
+        "pods": ["Charts", "DGCharts"],
+        "critical": false
+      },
+      "swiftDate": {
+        "version": "7.0.0",
+        "pods": ["SwiftDate"],
+        "critical": false
+      },
+      "phoneNumberKit": {
+        "version": "3.7.0",
+        "pods": ["PhoneNumberKit"],
+        "critical": false
+      },
+      "countryPickerView": {
+        "version": "3.3.0",
+        "pods": ["CountryPickerView"],
+        "critical": false
+      },
+      "rxSwift": {
+        "version": "6.6.0",
+        "pods": ["RxSwift", "RxCocoa", "RxRelay"],
+        "critical": false
+      },
+      "cocoaLumberjack": {
+        "version": "3.8.0",
+        "pods": ["CocoaLumberjack/Swift"],
+        "critical": false
+      },
+      "flex": {
+        "version": "5.22.10",
+        "pods": ["FLEX"],
+        "critical": false,
+        "debugOnly": true
+      },
+      "yahooFinanceKit": {
+        "version": "1.0.0",
+        "pods": ["YahooFinanceKit"],
+        "critical": false
+      },
+      "currencyFormatter": {
+        "version": "1.0.0",
+        "pods": ["CurrencyFormatter"],
+        "critical": false
+      },
+      "quick": {
+        "version": "7.3.0",
+        "pods": ["Quick"],
+        "critical": false,
+        "testOnly": true
+      },
+      "nimble": {
+        "version": "13.0.0",
+        "pods": ["Nimble"],
+        "critical": false,
+        "testOnly": true
+      },
+      "rxTest": {
+        "version": "6.6.0",
+        "pods": ["RxTest", "RxBlocking"],
+        "critical": false,
+        "testOnly": true
+      },
+      "ohHttpStubs": {
+        "version": "9.1.0",
+        "pods": ["OHHTTPStubs/Swift"],
+        "critical": false,
+        "testOnly": true
+      },
+      "snapshotTesting": {
+        "version": "1.15.0",
+        "pods": ["SnapshotTesting"],
+        "critical": false,
+        "testOnly": true
+      }
+    },
+    "carthage": {
+      "alamofire": {
+        "version": "5.8.1",
+        "github": "Alamofire/Alamofire",
+        "critical": false
+      },
+      "alamofireImage": {
+        "version": "4.3.0",
+        "github": "Alamofire/AlamofireImage",
+        "critical": false
+      },
+      "nuke": {
+        "version": "12.4.0",
+        "github": "kean/Nuke",
+        "critical": false
+      },
+      "keychainSwift": {
+        "version": "20.0.0",
+        "github": "evgenyneu/keychain-swift",
+        "critical": true
+      },
+      "cryptoSwift": {
+        "version": "1.8.0",
+        "github": "krzyzanowskim/CryptoSwift",
+        "critical": true
+      },
+      "lottie": {
+        "version": "4.4.0",
+        "github": "airbnb/lottie-ios",
+        "critical": false
+      },
+      "swiftuiIntrospect": {
+        "version": "1.1.0",
+        "github": "siteline/SwiftUIIntrospect",
+        "critical": false
+      },
+      "charts": {
+        "version": "5.0.0",
+        "github": "danielgindi/Charts",
+        "critical": false
+      },
+      "rxSwift": {
+        "version": "6.6.0",
+        "github": "ReactiveX/RxSwift",
+        "critical": false
+      },
+      "swiftDate": {
+        "version": "7.0.0",
+        "github": "malcommac/SwiftDate",
+        "critical": false
+      },
+      "phoneNumberKit": {
+        "version": "3.7.0",
+        "github": "marmelroy/PhoneNumberKit",
+        "critical": false
+      },
+      "composableArchitecture": {
+        "version": "1.5.0",
+        "github": "pointfreeco/swift-composable-architecture",
+        "critical": true
+      },
+      "swiftDependencies": {
+        "version": "1.1.0",
+        "github": "pointfreeco/swift-dependencies",
+        "critical": true
+      },
+      "identifiedCollections": {
+        "version": "1.0.0",
+        "github": "pointfreeco/swift-identified-collections",
+        "critical": false
+      },
+      "swiftuiNavigation": {
+        "version": "1.2.0",
+        "github": "pointfreeco/swiftui-navigation",
+        "critical": false
+      },
+      "combineSchedulers": {
+        "version": "1.0.0",
+        "github": "pointfreeco/combine-schedulers",
+        "critical": false
+      },
+      "cocoaLumberjack": {
+        "version": "3.8.0",
+        "github": "CocoaLumberjack/CocoaLumberjack",
+        "critical": false
+      },
+      "swiftlint": {
+        "version": "0.54.0",
+        "github": "realm/SwiftLint",
+        "critical": false
+      },
+      "swiftFormat": {
+        "version": "0.52.0",
+        "github": "nicklockwood/SwiftFormat",
+        "critical": false
+      },
+      "skeletonView": {
+        "version": "1.30.4",
+        "github": "Juanpe/SkeletonView",
+        "critical": false
+      },
+      "swiftuiFlowLayout": {
+        "version": "1.0.0",
+        "github": "globulus/swiftui-flow-layout",
+        "critical": false
+      },
+      "swiftuiShimmer": {
+        "version": "1.4.0",
+        "github": "markiv/SwiftUI-Shimmer",
+        "critical": false
+      },
+      "swiftCollections": {
+        "version": "1.0.0",
+        "github": "apple/swift-collections",
+        "critical": false
+      },
+      "swiftAlgorithms": {
+        "version": "1.2.0",
+        "github": "apple/swift-algorithms",
+        "critical": false
+      },
+      "swiftNumerics": {
+        "version": "1.0.0",
+        "github": "apple/swift-numerics",
+        "critical": false
+      },
+      "quick": {
+        "version": "7.3.0",
+        "github": "Quick/Quick",
+        "critical": false,
+        "testOnly": true
+      },
+      "nimble": {
+        "version": "13.0.0",
+        "github": "Quick/Nimble",
+        "critical": false,
+        "testOnly": true
+      },
+      "snapshotTesting": {
+        "version": "1.15.0",
+        "github": "pointfreeco/swift-snapshot-testing",
+        "critical": false,
+        "testOnly": true
+      },
+      "ohHttpStubs": {
+        "version": "9.1.0",
+        "github": "AliSoftware/OHHTTPStubs",
+        "critical": false,
+        "testOnly": true
+      },
+      "accessibility": {
+        "version": "1.0.0",
+        "github": "rwbutler/Accessibility",
+        "critical": false
+      }
+    }
+  },
+  "buildTools": {
+    "xcode": {
+      "version": "15.0",
+      "buildVersion": "15A240d",
+      "swiftVersion": "5.9"
+    },
+    "cocoapods": {
+      "version": "1.14.3",
+      "rubyVersion": "3.0.0"
+    },
+    "carthage": {
+      "version": "0.39.1"
+    },
+    "swiftPackageManager": {
+      "version": "5.9",
+      "toolsVersion": "5.9"
+    }
+  },
+  "security": {
+    "checksumVerification": true,
+    "signatureVerification": true,
+    "vulnerabilityScanning": true,
+    "lastSecurityAudit": "2025-01-28T00:00:00Z",
+    "criticalDependencies": [
+      "firebase",
+      "plaid",
+      "keychainSwift",
+      "cryptoSwift",
+      "composableArchitecture",
+      "swiftDependencies"
+    ]
+  },
+  "compatibility": {
+    "minimumVersions": {
+      "ios": "17.0",
+      "swift": "5.9",
+      "xcode": "15.0"
+    },
+    "testedVersions": {
+      "ios": ["17.0", "17.1", "17.2"],
+      "swift": ["5.9"],
+      "xcode": ["15.0", "15.1"]
+    }
+  },
+  "updatePolicy": {
+    "automatic": false,
+    "criticalSecurityUpdates": true,
+    "majorVersionUpdates": false,
+    "minorVersionUpdates": true,
+    "patchVersionUpdates": true,
+    "updateFrequency": "weekly",
+    "testingRequired": true
+  },
+  "notes": {
+    "lastReview": "2025-01-28T00:00:00Z",
+    "nextReview": "2025-02-28T00:00:00Z",
+    "reviewer": "Development Team",
+    "changes": [
+      {
+        "date": "2025-01-28T00:00:00Z",
+        "description": "Initial dependency setup for FamilyBooks iOS app",
+        "author": "Development Team"
+      }
+    ]
+  }
+}
