@@ -1,0 +1,246 @@
+name: Code Review Automation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  code-quality-checks:
+    name: Code Quality Checks
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '16.0'
+    
+    - name: Cache Swift Package Manager
+      uses: actions/cache@v3
+      with:
+        path: .build
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
+    
+    - name: Install SwiftLint
+      run: |
+        brew install swiftlint
+    
+    - name: Run SwiftLint
+      run: |
+        swiftlint lint --reporter github-actions-logging
+    
+    - name: Build project
+      run: |
+        cd FamilyBooks
+        xcodebuild -project FamilyBooks.xcodeproj -scheme FamilyBooks -destination 'platform=iOS Simulator,name=iPhone 15 Pro' build
+    
+    - name: Run unit tests
+      run: |
+        cd FamilyBooks
+        xcodebuild test -project FamilyBooks.xcodeproj -scheme FamilyBooks -destination 'platform=iOS Simulator,name=iPhone 15 Pro' -enableCodeCoverage YES
+    
+    - name: Generate test coverage report
+      run: |
+        cd FamilyBooks
+        xcrun xccov view --report --json DerivedData/Build/Logs/Test/*.xcresult > coverage.json
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./FamilyBooks/coverage.json
+        flags: unittests
+        name: codecov-umbrella
+
+  security-scan:
+    name: Security Scan
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Run security scan
+      uses: github/super-linter@v4
+      env:
+        DEFAULT_BRANCH: main
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VALIDATE_SWIFT: true
+        VALIDATE_YAML: true
+        VALIDATE_JSON: true
+        VALIDATE_MARKDOWN: true
+    
+    - name: Check for sensitive data
+      run: |
+        # Check for potential API keys, passwords, or sensitive data
+        if grep -r -i "api[_-]key\|password\|secret\|token" --include="*.swift" --include="*.plist" .; then
+          echo "⚠️ Potential sensitive data found. Please review."
+          exit 1
+        fi
+
+  pr-size-check:
+    name: PR Size Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check PR size
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const { data: pr } = await github.rest.pulls.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number
+          });
+          
+          const additions = pr.additions;
+          const deletions = pr.deletions;
+          const totalChanges = additions + deletions;
+          
+          console.log(`PR changes: +${additions} -${deletions} (total: ${totalChanges})`);
+          
+          if (totalChanges > 800) {
+            core.setFailed(`PR is too large (${totalChanges} lines). Consider splitting into smaller PRs.`);
+          } else if (totalChanges > 400) {
+            console.log(`⚠️ Large PR (${totalChanges} lines). Consider if this can be split.`);
+          }
+
+  assign-reviewers:
+    name: Auto-assign Reviewers
+    runs-on: ubuntu-latest
+    if: github.event.action == 'opened'
+    
+    steps:
+    - name: Auto-assign reviewers
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const reviewers = ['brokensound88']; // Add team members here
+          
+          await github.rest.pulls.requestReviewers({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number,
+            reviewers: reviewers
+          });
+
+  check-pr-template:
+    name: Check PR Template
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check PR description
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const { data: pr } = await github.rest.pulls.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number
+          });
+          
+          const body = pr.body || '';
+          const requiredSections = [
+            'Description',
+            'Type of Change',
+            'Testing',
+            'Checklist'
+          ];
+          
+          const missingSections = requiredSections.filter(section => 
+            !body.includes(section)
+          );
+          
+          if (missingSections.length > 0) {
+            core.setFailed(`PR template incomplete. Missing sections: ${missingSections.join(', ')}`);
+          }
+
+  performance-check:
+    name: Performance Check
+    runs-on: macos-latest
+    if: contains(github.event.pull_request.labels.*.name, 'performance')
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '16.0'
+    
+    - name: Run performance tests
+      run: |
+        cd FamilyBooks
+        xcodebuild test -project FamilyBooks.xcodeproj -scheme FamilyBooks -destination 'platform=iOS Simulator,name=iPhone 15 Pro' -only-testing:FamilyBooksTests/PerformanceTests
+
+  accessibility-check:
+    name: Accessibility Check
+    runs-on: macos-latest
+    if: contains(github.event.pull_request.labels.*.name, 'ui')
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '16.0'
+    
+    - name: Run accessibility tests
+      run: |
+        cd FamilyBooks
+        xcodebuild test -project FamilyBooks.xcodeproj -scheme FamilyBooks -destination 'platform=iOS Simulator,name=iPhone 15 Pro' -only-testing:FamilyBooksUITests/AccessibilityTests
+
+  review-reminder:
+    name: Review Reminder
+    runs-on: ubuntu-latest
+    if: github.event.action == 'opened'
+    
+    steps:
+    - name: Add review reminder comment
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const comment = `## 📋 Code Review Checklist
+          
+          **Reviewers, please ensure:**
+          
+          - [ ] Code follows Swift style guidelines
+          - [ ] Security considerations reviewed
+          - [ ] Performance impact assessed
+          - [ ] Test coverage is adequate
+          - [ ] Documentation updated (if needed)
+          - [ ] Accessibility guidelines followed (for UI changes)
+          
+          **Review Timeline:**
+          - Initial review: Within 24 hours
+          - Follow-up reviews: Within 4 hours
+          
+          See [Code Review Guidelines](docs/code-review-guidelines.md) for detailed criteria.`;
+          
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            body: comment
+          });
+
+  merge-requirements:
+    name: Merge Requirements Check
+    runs-on: ubuntu-latest
+    needs: [code-quality-checks, security-scan, pr-size-check, check-pr-template]
+    
+    steps:
+    - name: All checks passed
+      run: |
+        echo "✅ All required checks passed. PR is ready for review."

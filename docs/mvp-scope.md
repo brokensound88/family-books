@@ -11,6 +11,7 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 **Primary Goal**: Enable families to sync and view all their financial accounts in one place.
 
 **Features**:
+
 - **Bank Account Syncing**: Connect checking, savings, and credit card accounts via Plaid/Yodlee APIs
 - **Superannuation Integration**: Sync Australian super funds with specialized focus on major providers (AustralianSuper, Sunsuper, REST)
 - **Investment Account Syncing**: Connect brokerage accounts and managed funds
@@ -18,6 +19,7 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 - **FinanceKit Integration**: Leverage iOS 18.4+ FinanceKit for Apple Wallet account syncing
 
 **Technical Implementation**:
+
 - Swift services using async/await for API calls
 - SwiftData for local account data persistence
 - Secure credential storage using Keychain Services
@@ -28,6 +30,7 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 **Primary Goal**: Provide intuitive budgeting tools that help families manage their finances effectively.
 
 **Features**:
+
 - **Zero-Based Budgeting**: Create and manage budgets with customizable categories
 - **AI Transaction Categorization**: Use CoreML for offline transaction categorization
 - **Spending Insights**: Visual spending patterns and trend analysis
@@ -35,6 +38,7 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 - **Expense Tracking**: Real-time expense monitoring with SwiftUI charts
 
 **Technical Implementation**:
+
 - SwiftData models for budget and transaction data
 - CoreML model for intelligent transaction categorization
 - SwiftUI Chart framework for visual analytics
@@ -45,6 +49,7 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 **Primary Goal**: Engage children (ages 8-18) with gamified financial education and savings goals.
 
 **Features**:
+
 - **Interactive Lessons**: 5 core financial literacy modules (Saving Basics, Budgeting 101, Investment Fundamentals, Banking Basics, Goal Setting)
 - **Virtual Stock Portfolio**: Paper trading with real market data for educational purposes
 - **Savings Goals**: Visual progress tracking with animated SwiftUI components
@@ -52,6 +57,7 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 - **Achievement System**: Badges and rewards for completing lessons and reaching goals
 
 **Technical Implementation**:
+
 - SwiftUI animations for engaging user interfaces
 - CloudKit for family data synchronization
 - StoreKit for educational content purchases
@@ -62,6 +68,7 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 **Primary Goal**: Provide comprehensive investment monitoring with Australian superannuation focus.
 
 **Features**:
+
 - **Portfolio Dashboard**: Real-time investment performance tracking
 - **Superannuation Monitoring**: Detailed super fund balance and performance tracking
 - **Asset Allocation Visualization**: Interactive charts showing investment distribution
@@ -69,6 +76,7 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 - **Investment Insights**: AI-driven suggestions for portfolio optimization
 
 **Technical Implementation**:
+
 - Integration with Australian super fund APIs
 - SwiftUI Chart framework for investment visualizations
 - CoreML for investment insight generation
@@ -79,6 +87,7 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 **Primary Goal**: Enable secure family financial collaboration with appropriate access controls.
 
 **Features**:
+
 - **Multi-User Accounts**: Support for 1 admin (parent) and up to 4 child accounts
 - **Role-Based Access**: Different permission levels for parents and children
 - **Shared Goals**: Family-wide financial goals with collaborative tracking
@@ -86,6 +95,7 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 - **Communication Tools**: In-app messaging for financial discussions
 
 **Technical Implementation**:
+
 - CloudKit for real-time family data synchronization
 - User role management with secure authentication
 - Push notifications for family updates
@@ -96,6 +106,7 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 **Primary Goal**: Keep families informed and engaged with timely financial updates.
 
 **Features**:
+
 - **Bill Reminders**: Automated notifications for upcoming bills and payments
 - **Goal Progress Updates**: Notifications when savings goals are reached or milestones achieved
 - **Budget Alerts**: Warnings when spending approaches budget limits
@@ -103,6 +114,7 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 - **Investment Updates**: Notifications for significant portfolio changes
 
 **Technical Implementation**:
+
 - UserNotifications framework for push notifications
 - WidgetKit for iOS home screen widgets
 - Background app refresh for timely updates
@@ -110,7 +122,7 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 
 ## MVP Exclusions (Post-Launch Features)
 
-### Features Deliberately Excluded from MVP:
+### Features Deliberately Excluded from MVP
 
 1. **macOS Application**: Mac Catalyst version planned for post-MVP
 2. **Advanced Investment Tools**: Robo-advisory and complex analytics
@@ -123,7 +135,8 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 
 ## Technical Architecture for MVP
 
-### Core Technologies:
+### Core Technologies
+
 - **iOS 18+**: Minimum platform requirement
 - **Swift 5.9+**: Latest language features with concurrency support
 - **SwiftUI**: Native UI framework with iOS 18 enhancements
@@ -134,26 +147,30 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 - **WidgetKit**: Home screen widgets and Live Activities
 - **StoreKit**: In-app purchases and subscription management
 
-### External Services:
+### External Services
+
 - **Plaid/Yodlee**: Financial institution connectivity
 - **Firebase**: Analytics, crash reporting, and additional cloud services
 - **Stripe**: Payment processing for subscriptions
 
 ## Success Metrics for MVP
 
-### User Engagement:
+### User Engagement
+
 - **Daily Active Users**: Target 60% of registered users
 - **Feature Adoption**: 80% of users sync at least one account
 - **Kids Module Engagement**: 70% of families with children use education features
 - **Budget Creation**: 75% of users create and maintain budgets
 
-### Technical Performance:
+### Technical Performance
+
 - **App Launch Time**: < 2 seconds on iPhone 14+
 - **API Response Time**: < 500ms for account syncing
 - **Crash Rate**: < 0.1% of sessions
 - **App Store Rating**: Target 4.5+ stars
 
-### Business Metrics:
+### Business Metrics
+
 - **User Acquisition**: 10,000 registered users within first year
 - **Premium Conversion**: 20% conversion to paid subscriptions
 - **User Retention**: 70% monthly retention rate
@@ -162,38 +179,45 @@ This document defines the Minimum Viable Product (MVP) scope for **FamilyBooks**
 ## Development Timeline
 
 ### Phase 1: Foundation (December 2025 - January 2026)
+
 - Core app architecture and navigation
 - User authentication and onboarding
 - Basic account syncing infrastructure
 
 ### Phase 2: Core Features (February 2026 - March 2026)
+
 - Financial account integration
 - Budgeting and expense tracking
 - Basic investment tracking
 
 ### Phase 3: Family Features (April 2026)
+
 - Kids' education module
 - Family collaboration features
 - Notifications and widgets
 
 ### Phase 4: Polish & Testing (May 2026 - June 2026)
+
 - UI/UX refinements
 - Performance optimization
 - Beta testing and feedback integration
 
 ### Phase 5: Launch (July 2026)
+
 - App Store submission
 - Marketing campaign launch
 - Post-launch monitoring and support
 
 ## Risk Mitigation
 
-### Technical Risks:
+### Technical Risks
+
 - **API Limitations**: Maintain fallback options for Plaid/Yodlee
 - **iOS 18 Adoption**: Ensure graceful degradation for older iOS versions
 - **Performance Issues**: Implement comprehensive testing and optimization
 
-### Business Risks:
+### Business Risks
+
 - **Market Competition**: Focus on unique Australian superannuation features
 - **User Adoption**: Implement comprehensive onboarding and education
 - **Regulatory Compliance**: Maintain ongoing compliance monitoring
