@@ -4,6 +4,8 @@ The marketing & commerce site for **Aditi Kumar**, author of *The Art of Doing L
 
 This directory is the home of the Next.js web project. The code is not scaffolded yet — the **Build Bible** below is the contract that drives the build.
 
+> **New here?** Read [`HANDOFF.md`](./HANDOFF.md) first. It explains why these files originated in the `family-books` repo (instead of `Aditi-Website`), how to migrate them, and exactly how the next Claude Code session should pick up where the previous one left off.
+
 ## Build Bible
 
 Read in this order:
